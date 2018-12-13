@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html ng-app="myApp" ng-controller="AppCtrl" lang="en">
+<head>
+<title>My Schedule</title>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
+
+<script type="text/javascript" src="./js/schedule.js"></script>
+<script>
+window.jQuery || document.write('<script src="http://mysite.com/jquery.min.js"><\/script>')
+</script>
+
+<link type="text/css" rel="stylesheet" href="../css/style.css">
+<link type="text/css" rel="stylesheet" href="./css/style.css">
+<script type="text/javascript" src="./js/menuOptions.js"></script>
+</head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
+</style>
+<body class="w3-light-grey">
+
+<!-- Top container -->
+<div class="w3-bar w3-top w3-black w3-large" style="z-index:4">
+  <button class="w3-bar-item w3-button w3-hover-none w3-hover-text-light-grey" onclick="w3_open();"><i class="fa fa-bars"></i>  Menu</button>
+  <span class="w3-bar-item w3-right"  onclick = "openLogin()">Logout</span>
+</div>
+
+<!-- Sidebar/menu -->
+<nav class="w3-sidebar w3-white w3-animate-left" style="z-index:3;width:200px;" id="mySidebar"><br>
+  <div class="w3-container w3-row">
+    <div class="w3-col s4">
+      <img src="../img/Admin.jpg" class="w3-circle w3-margin-right" style="width:70px">
+    </div>
+    <div class="w3-col s8 w3-bar">
+      <span style="margin-left:25px">Welcome, <strong style="margin-left:25px">Admin</strong></span><br>
+      <a href="#" class="w3-bar-item w3-button w3-hover-none" onclick = "openMessages()" style="width:30px;margin-left:10px"><i class="fa fa-envelope"></i></a>
+      <a href="#" class="w3-bar-item w3-button w3-hover-none" style="width:30px;margin-left:5px "><i class="fa fa-user"></i></a>
+      <a href="#" class="w3-bar-item w3-button w3-hover-none" onclick = "openSettings()" style="width:30px"><i class="fa fa-cog"></i></a>
+    </div>
+  </div>
+  <hr>
+  <div class="w3-container">
+    <h5>Dashboard</h5>
+  </div>
+  <div class="w3-bar-block">
+    <a href="#" class="w3-bar-item w3-button w3-padding" onclick="w3_close()" title="close menu"><i class="fa fa-remove fa-fw"></i>  Close Menu</a>
+    <a href="#" class="w3-bar-item w3-button w3-padding" onclick = "openHome()"><i class="fa fa-home fa-fw"></i>	Blackboard Home</a>
+    <a href="#" class="w3-bar-item w3-button w3-padding" onclick = "openCourses()"><i class="fa fa-book fa-fw"></i>	Courses</a>
+    <a href="#" class="w3-bar-item w3-button w3-padding" onclick = "openNotification()"><i class="fa fa-bell fa-fw"></i>	Notifications</a>
+    <a href="#" class="w3-bar-item w3-button w3-padding w3-blue" onclick = "openSchedule()"><i class="fa fa-heart fa-fw"></i>	Schedule</a>
+   <a href="#" class="w3-bar-item w3-button w3-padding" onclick = "openCalender()"><i class="fa fa-calendar fa-fw"></i>	Calender</a> 
+   <!--  <a href="#" class="w3-bar-item w3-button w3-padding" onclick = "openPeople()"><i class="fa fa-users fa-fw"></i>	People</a>
+    <a href="#" class="w3-bar-item w3-button w3-padding" onclick = "openGeneral()"><i class="fa fa-bank fa-fw"></i>	General</a>
+    <a href="#" class="w3-bar-item w3-button w3-padding" onclick = "openHistory()"><i class="fa fa-history fa-fw"></i>	History</a>-->
+    <a href="#" class="w3-bar-item w3-button w3-padding" onclick = "openSettings()"><i class="fa fa-cog fa-fw"></i>	Settings</a><br><br>
+  </div>
+</nav>
+
+
+<!-- Overlay effect when opening sidebar on small screens -->
+<div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
+
+<!-- !PAGE CONTENT! -->
+<div class="w3-main" style="margin-left:200px;margin-top:43px;" id = "myPageContent">
+	<br />
+<div class="cd-schedule loading">
+	<div class="timeline">
+		<ul>
+			<li><span>09:00</span></li>
+			<li><span>09:30</span></li>
+			<li><span>10:00</span></li>
+			<li><span>10:30</span></li>
+			<li><span>11:00</span></li>
+			<li><span>11:30</span></li>
+			<li><span>12:00</span></li>
+			<li><span>12:30</span></li>
+			<li><span>13:00</span></li>
+			<li><span>13:30</span></li>
+			<li><span>14:00</span></li>
+			<li><span>14:30</span></li>
+			<li><span>15:00</span></li>
+			<li><span>15:30</span></li>
+			<li><span>16:00</span></li>
+			<li><span>16:30</span></li>
+			<li><span>17:00</span></li>
+			<li><span>17:30</span></li>
+			<li><span>18:00</span></li>
+		</ul>
+	</div> <!-- .timeline -->
+
+	<div class="events">
+		<ul>
+			<li class="events-group">
+				<div class="top-info"><span>Monday</span></div>
+			</li>
+
+			<li class="events-group">
+				<div class="top-info"><span>Tuesday</span></div>
+
+				<ul>
+					<li class="single-event" data-start="10:15" data-end="11:15"  data-content="event-rowing-workout" data-event="event-2">
+						<a href="#0">
+							<em class="event-name">Faculty Meeting</em>
+						</a>
+					</li>
+
+					<li class="single-event" data-start="14:00" data-end="15:00"  data-content="event-restorative-yoga" data-event="event-4">
+						<a href="#0">
+							<em class="event-name">Office Hours</em>
+						</a>
+					</li>
+
+					<li class="single-event" data-start="17:15" data-end="20:30" data-content="event-abs-circuit" data-event="event-1">
+						<a href="#0">
+							<em class="event-name">Internet and Web Systems Lecture</em>
+						</a>
+					</li>
+				</ul>
+			</li>
+
+			<li class="events-group">
+				<div class="top-info"><span>Wednesday</span></div>
+
+				<ul>
+					<li class="single-event" data-start="09:00" data-end="10:15" data-content="event-restorative-yoga" data-event="event-4">
+						<a href="#0">
+							<em class="event-name">Restorative Yoga</em>
+						</a>
+					</li>
+
+					<li class="single-event" data-start="10:45" data-end="11:45" data-content="event-yoga-1" data-event="event-3">
+						<a href="#0">
+							<em class="event-name">Yoga Level 1</em>
+						</a>
+					</li>
+
+					<li class="single-event" data-start="12:00" data-end="13:45"  data-content="event-rowing-workout" data-event="event-2">
+						<a href="#0">
+							<em class="event-name">Rowing Workout</em>
+						</a>
+					</li>
+
+					<li class="single-event" data-start="13:45" data-end="15:00" data-content="event-yoga-1" data-event="event-3">
+						<a href="#0">
+							<em class="event-name">Yoga Level 1</em>
+						</a>
+					</li>
+				</ul>
+			</li>
+
+			<li class="events-group">
+				<div class="top-info"><span>Thursday</span></div>
+
+				<ul>
+					<li class="single-event" data-start="09:30" data-end="10:30" data-content="event-abs-circuit" data-event="event-1">
+						<a href="#0">
+							<em class="event-name">Abs Circuit</em>
+						</a>
+					</li>
+
+					<li class="single-event" data-start="12:00" data-end="13:45" data-content="event-restorative-yoga" data-event="event-4">
+						<a href="#0">
+							<em class="event-name">Restorative Yoga</em>
+						</a>
+					</li>
+
+					<li class="single-event" data-start="15:30" data-end="16:30" data-content="event-abs-circuit" data-event="event-1">
+						<a href="#0">
+							<em class="event-name">Abs Circuit</em>
+						</a>
+					</li>
+
+					<li class="single-event" data-start="17:00" data-end="18:30"  data-content="event-rowing-workout" data-event="event-2">
+						<a href="#0">
+							<em class="event-name">Rowing Workout</em>
+						</a>
+					</li>
+				</ul>
+			</li>
+
+			<li class="events-group">
+				<div class="top-info"><span>Friday</span></div>
+
+				<ul>
+					<li class="single-event" data-start="10:00" data-end="11:00"  data-content="event-rowing-workout" data-event="event-2" style="display:none">
+						<a href="#0">
+							<em class="event-name">Rowing Workout</em>
+						</a>
+					</li>
+				</ul>
+			</li>
+		</ul>
+	</div>
+
+	<div class="event-modal">
+		<header class="header">
+			<div class="content">
+				<span class="event-date"></span>
+				<h3 class="event-name"></h3>
+			</div>
+
+			<div class="header-bg"></div>
+		</header>
+
+		<div class="body">
+			<div class="event-info"></div>
+			<div class="body-bg"></div>
+		</div>
+
+		<a href="#0" class="close">Close</a>
+	</div>
+
+	<div class="cover-layer"></div>
+</div> <!-- .cd-schedule -->
+
+  <!-- End page content -->
+</div>
+
+<script>
+// Get the Sidebar
+var mySidebar = document.getElementById("mySidebar");
+
+// Get the DIV with overlay effect
+var overlayBg = document.getElementById("myOverlay");
+
+// Get Page Content
+var myPgContent = document.getElementById("myPageContent");
+
+// Toggle between showing and hiding the sidebar, and add overlay effect
+function w3_open() {
+    if (mySidebar.style.display === 'block') {
+        mySidebar.style.display = 'none';
+        overlayBg.style.display = "none";  
+		myPageContent.style.marginLeft = '10px';
+	}
+	else {
+        mySidebar.style.display = 'block';
+        overlayBg.style.display = "block";
+		myPageContent.style.marginLeft = '200px';
+    }
+}
+
+// Close the sidebar with the close button
+function w3_close() {
+    mySidebar.style.display = "none";
+    overlayBg.style.display = "none";
+	myPageContent.style.marginLeft = '10px';
+}
+</script>
+
+</body>
+</html>
